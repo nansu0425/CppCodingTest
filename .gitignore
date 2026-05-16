@@ -1,0 +1,64 @@
+# Visual Studio / MSVC build artifacts
+
+# VS workspace cache
+.vs/
+
+# Build output directories (solution-level and per-project)
+[Dd]ebug/
+[Rr]elease/
+[Xx]64/
+[Ww]in32/
+[Xx]86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Bb]in/
+[Oo]bj/
+ipch/
+
+# Compiler / linker intermediates
+*.obj
+*.o
+*.pch
+*.ipch
+*.pdb
+*.idb
+*.iobj
+*.ipdb
+*.ilk
+*.exp
+*.lib
+*.exe
+*.dll
+*.tlog
+*.log
+*.lastbuildstate
+*.recipe
+*.unsuccessfulbuild
+
+# VS user/state files
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.aps
+*.ncb
+*.opendb
+
+# OS junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Editor temp
+*~
+*.swp
+*.swo
+.idea/
