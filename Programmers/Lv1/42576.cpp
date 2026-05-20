@@ -5,39 +5,36 @@
 using namespace std;
 
 string solution(vector<string> participant, vector<string> completion) {
-    string answer = "";
-
-    unordered_map<string, int> participantCount;
-    for (const string& name : participant)
+    // 1. 참가자 카운트 맵을 만든다
+    unordered_map<string, int> countMap;
+    for (const string& p : participant)
     {
-        ++participantCount[name];
+        ++countMap[p];
     }
 
-    unordered_map<string, int> completionCount;
-    for (const string& name : completion)
+    // 2. 완주할 경우 1을 뺀다
+    for (const string& c : completion)
     {
-        ++completionCount[name];
+        --countMap[c];
     }
 
-    for (const auto& [name, count] : participantCount)
+    // 3. 0이 되지 못한 참가자를 찾는다
+    for (const auto& [name, count] : countMap)
     {
-        // 1. 참가자 이름이 완주자에 있는지 확인
-        // 2. 참가자 카운트보다 완주자 카운트가 적은지 확인
-        auto iter = completionCount.find(name);
-        if (iter == completionCount.end() || iter->second < count)
+        if (count > 0)
         {
             return name;
         }
     }
     
-    return answer;
+    return "";
 }
 
 #ifdef LOCAL
 
 int main()
 {
-    string answer = solution({ "mislav", "stanko", "mislav", "ana" }, { "stanko", "ana", "mislav" });
+    string answer = solution({ "mislav", "stanko", "mislav", "ana" }, { "stanko", "ana", "mislav" }); // mislav
 
     return 0;
 }
