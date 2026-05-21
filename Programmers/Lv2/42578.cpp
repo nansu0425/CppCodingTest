@@ -2,32 +2,31 @@
 #include <vector>
 #include <unordered_map>
 
-using namespace std;
+int solution(std::vector<std::vector<std::string>> clothes) {
+    // 의상 종류별 의상의 개수 + 1(착용하지 않는 경우) 모두 곱한 후 모두 1(모두 착용하지 않은 경우)을 뺀다
 
-int solution(vector<vector<string>> clothes) {
-    int answer = 1;
-
-    // 1. 종류별 의상의 개수 map 생성
-    unordered_map<string, int> categoryToCount;
-    for (const auto& cloth : clothes)
+    // 1. (의상 종류, 의상 개수) map을 만든다
+    std::unordered_map<std::string, int> categoryToCount;
+    for (const auto& c : clothes)
     {
-        ++categoryToCount[cloth[1]];
+        ++categoryToCount[c[1]];
     }
 
-    // 2. 입지 않는 경우도 포함해서 의상 종류별 (의상의 개수 + 1)을 모두 곱한다
+    // 2. map을 순회하며 의상 개수 + 1 누적곱
+    int answer = 1;
     for (const auto& [category, count] : categoryToCount)
     {
         answer *= count + 1;
     }
 
-    // 3. 모든 의상을 입지 않는 경우의 수 한 개를 제외
+    // 3. 1을 뺀후 반환
     return answer - 1;
 }
 
 #ifdef LOCAL
 int main()
 {
-    int answer1 = solution({ {"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"} }); // 5
+    int answer1 = solution({{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}}); // 5
     int answer2 = solution({ {"crow_mask", "face"}, {"blue_sunglasses", "face"}, {"smoky_makeup", "face"} }); // 3
 
     return 0;
